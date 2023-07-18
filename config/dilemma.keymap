@@ -13,10 +13,23 @@
 #define SYM 2
 #define NUM 3
 #define FN 4
+#define TMUX 5
 
 #define STAB (LS(TAB))
 #define CTAB (LC(TAB))
 #define CSTAB (LC(LS(TAB)))
+
+
+#define CA_0 (LC(LA(N0)))
+#define CA_1 (LC(LA(N1)))
+#define CA_2 (LC(LA(N2)))
+#define CA_3 (LC(LA(N3)))
+#define CA_4 (LC(LA(N4)))
+#define CA_5 (LC(LA(N5)))
+#define CA_6 (LC(LA(N6)))
+#define CA_7 (LC(LA(N7)))
+#define CA_8 (LC(LA(N8)))
+#define CA_9 (LC(LA(N9)))
 
 &lt {
   quick-tap-ms = <125>;
@@ -31,6 +44,23 @@
   vbatt: vbatt {
       compatible = "zmk,battery-nrf-vddh";
       label = "VBATT";
+  };
+
+  conditional_layers {
+      compatible = "zmk,conditional-layers";
+      tri_layer {
+          if-layers = <1 2>;
+          then-layer = <5>;
+      };
+  };
+
+  combos {
+      compatible = "zmk,combos";
+      combo_esc {
+         timeout-ms = <50>;
+         key-positions = <27 32>;
+         bindings = <&caps_word>;
+      };
   };
 
   behaviors {
@@ -60,7 +90,7 @@
       &none     &kp Q      &kp W      &kp F        &kp P        &kp B                     &kp J      &kp L       &kp U       &kp Y      &kp SEMI   &none
       &kp ESC   &hm LGUI A &hm LALT R &hm LSHFT S  &hm LCTRL T  &hm RALT G                &hm RALT M &hm RCTRL N &hm RSHFT E &hm LALT I &hm RGUI O &kp APOS
       &none     &kp Z      &kp X      &kp C        &kp D        &kp V                     &kp K      &kp H       &kp COMMA   &kp DOT    &kp QMARK  &none
-                                      &lt NUM TAB  &lt NAV BSPC &lt FN DEL                &kp ENTER  &lt SYM SPACE &kp Q
+                                      &lt NUM TAB  &lt NAV BSPC &lt FN DEL                &kp ENTER  &lt SYM SPACE &kp LC(B)
       >;
     };
 
@@ -68,14 +98,14 @@
       bindings = <
       &trans    &trans     &trans     &trans       &trans       &trans                    &trans     &trans      &kp HOME    &kp END    &trans     &none
       &swap     &sk LGUI   &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT  &trans     &kp F11
-      &kp STAB  &trans     &trans     &trans       &trans       &kp PSCRN                 &trans     &trans      &trans      &trans     &trans     &none 
+      &kp STAB  &kp LC(Z)  &kp LC(X)  &kp LC(C)    &kp LC(V)    &kp PSCRN                 &trans     &trans      &trans      &trans     &trans     &none 
                                       &trans       &trans       &trans                    &trans     &trans      &trans  
       >;
     };
 
    symbols_layer {
       bindings = <
-      &none     &kp APOS   &kp LT     &kp GT       &kp DQT      &kp DOT                   &kp AMPS   &kp UNDER   &kp LBRC    &kp RBRC   &kp PRCNT  &none
+      &none     &kp APOS   &kp LT     &kp GT       &kp DQT      &kp GRAVE                 &kp AMPS   &kp UNDER   &kp LBRC    &kp RBRC   &kp PRCNT  &none
       &kp TAB   &kp EXCL   &kp MINUS  &kp PLUS     &kp EQUAL    &kp HASH                  &kp PIPE   &kp COLON   &kp LPAR    &kp RPAR   &kp SEMI   &kp DQT
       &kp STAB  &kp CARET  &kp FSLH   &kp STAR     &kp BSLH     &kp AT                    &kp TILDE  &kp DLLR    &kp LBKT    &kp RBKT   &kp QMARK  &none
                                       &trans       &trans       &trans                    &trans     &trans      &trans
@@ -96,6 +126,15 @@
       &none     &none      &none      &none        &none        &none                     &none      &kp F7      &kp F8      &kp F9     &kp F12    &none
       &none     &kp LGUI   &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &none      &kp F4      &kp F5      &kp F6     &kp F11    &none
       &none     &none      &none      &none        &none        &none                     &none      &kp F1      &kp F2      &kp F3     &kp F10    &none 
+                                      &trans       &trans       &trans                    &trans     &trans      &trans
+      >;
+    };
+  
+    tmux_layer {
+      bindings = <
+      &none     &kp CA_1   &kp CA_2   &kp CA_3     &kp CA_4     &kp CA_5                  &kp CA_6   &kp kp CA_7 &kp CA_8    &kp CA_9   &kp CA_0   &none
+      &none     &kp LA(N1) &kp LA(N2) &kp LA(N3)   &kp LA(N4)   &kp LA(N5)                &kp LA(N6) &kp LA(N7)  &kp LA(N8)  &kp LA(N9) &kp LA(N0) &none
+      &none     &none      &none      &none        &none        &none                     &none      &none       &none       &none      &none      &none 
                                       &trans       &trans       &trans                    &trans     &trans      &trans
       >;
     };
