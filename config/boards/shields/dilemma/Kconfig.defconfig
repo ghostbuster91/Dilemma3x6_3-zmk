@@ -1,6 +1,7 @@
 # Copyright (c) 2022 ZMK Contributors
 # SPDX-License-Identifier: MIT
  
+ZMK_WIDGET_LAYER_STATUS=y
  
 if SHIELD_DILEMMA_LEFT
 
