@@ -132,7 +132,7 @@
   
     tmux_layer {
       bindings = <
-      &none     &kp CA_1   &kp CA_2   &kp CA_3     &kp CA_4     &kp CA_5                  &kp CA_6   &kp kp CA_7 &kp CA_8    &kp CA_9   &kp CA_0   &none
+      &none     &kp CA_1   &kp CA_2   &kp CA_3     &kp CA_4     &kp CA_5                  &kp CA_6   &kp CA_7    &kp CA_8    &kp CA_9   &kp CA_0   &none
       &none     &kp LA(N1) &kp LA(N2) &kp LA(N3)   &kp LA(N4)   &kp LA(N5)                &kp LA(N6) &kp LA(N7)  &kp LA(N8)  &kp LA(N9) &kp LA(N0) &none
       &none     &none      &none      &none        &none        &none                     &none      &none       &none       &none      &none      &none 
                                       &trans       &trans       &trans                    &trans     &trans      &trans
