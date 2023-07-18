@@ -75,21 +75,23 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LEFT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "balanced";
             tapping-term-ms = <200>;
             quick-tap-ms = <125>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <18 19 20 21 22>;
+            hold-trigger-on-release = true;
         };
         rh: right_hand_positional_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "RIGHT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "balanced";
             tapping-term-ms = <200>;
             quick-tap-ms = <125>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <13 14 15 16 17>;
+            hold-trigger-on-release = true;
         };
   };
 
@@ -134,8 +136,8 @@
 
     fn_layer {
       bindings = <
-      &none     &none      &none      &none        &none        &none                     &none      &kp F7      &kp F8      &kp F9     &kp F12    &none
-      &none     &kp LGUI   &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &none      &kp F4      &kp F5      &kp F6     &kp F11    &none
+      &bootloader &none    &none      &none        &none        &none                     &none      &kp F7      &kp F8      &kp F9     &kp F12    &bootloader
+      &sys_reset &kp LGUI  &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &none      &kp F4      &kp F5      &kp F6     &kp F11    &sys_reset
       &none     &none      &none      &none        &none        &none                     &none      &kp F1      &kp F2      &kp F3     &kp F10    &none 
                                       &trans       &trans       &trans                    &trans     &trans      &trans
       >;
