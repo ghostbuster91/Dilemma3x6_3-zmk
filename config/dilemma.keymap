@@ -91,7 +91,6 @@
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <13 14 15 16 17>;
         };
-    };
   };
 
   keymap {
