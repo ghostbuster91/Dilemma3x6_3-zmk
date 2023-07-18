@@ -59,7 +59,7 @@
             bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
             ignored-key-positions = <24>;
         };
-        swap2: swapper {
+        swap2: swapper2 {
             compatible = "zmk,behavior-tri-state";
             label = "SWAPPER_2";
             #binding-cells = <0>;
