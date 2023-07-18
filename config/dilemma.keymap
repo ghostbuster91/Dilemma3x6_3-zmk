@@ -80,7 +80,7 @@
             quick-tap-ms = <125>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <18 19 20 21 22>;
-            hold-trigger-on-release = true;
+            hold-trigger-on-release;
         };
         rh: right_hand_positional_hold_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -91,7 +91,7 @@
             quick-tap-ms = <125>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <13 14 15 16 17>;
-            hold-trigger-on-release = true;
+            hold-trigger-on-release;
         };
   };
 
