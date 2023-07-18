@@ -102,7 +102,7 @@
       bindings = <
       &none     &kp Q      &kp W      &kp F        &kp P        &kp B                     &kp J      &kp L       &kp U       &kp Y      &kp SEMI   &none
       &kp ESC   &lh LGUI A &lh LALT R &lh LSHFT S  &lh LCTRL T  &lh RALT G                &rh RALT M &rh RCTRL N &rh RSHFT E &rh LALT I &rh RGUI O &kp APOS
-      &none     &kp Z      &kp X      &kp C        &kp D        &kp V                     &kp K      &kp H       &kp COMMA   &kp DOT    &kp QMARK  &none
+      &none     &kp Z      &kp X      &kp C        &kp D        &kp V                     &kp K      &kp H       &kp COMMA   &kp DOT    &kp FSLH   &none
                                       &lt NUM TAB  &lt NAV BSPC &lt FN DEL                &kp ENTER  &lt SYM SPACE &kp LC(B)
       >;
     };
