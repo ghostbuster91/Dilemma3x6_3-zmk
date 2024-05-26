@@ -138,7 +138,7 @@
       bindings = <
       &bootloader &none    &none      &none        &none        &none                     &none      &kp F7      &kp F8      &kp F9     &kp F12    &bootloader
       &sys_reset &kp LGUI  &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &none      &kp F4      &kp F5      &kp F6     &kp F11    &sys_reset
-      &none     &none      &none      &none        &none        &none                     &none      &kp F1      &kp F2      &kp F3     &kp F10    &none 
+      &bt BTC   &bt BTS1   &bt BTS2   &bt BTS3     &bt BTS4     &bt BTS5                  &none      &kp F1      &kp F2      &kp F3     &kp F10    &none 
                                       &trans       &trans       &trans                    &trans     &trans      &trans
       >;
     };
