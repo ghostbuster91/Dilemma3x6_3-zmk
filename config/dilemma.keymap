@@ -18,12 +18,12 @@
 #define CTAB (LC(TAB))
 #define CSTAB (LC(LS(TAB)))
 
-#define BTS_1 (BT_SEL 1)
-#define BTS_2 (BT_SEL 2)
-#define BTS_3 (BT_SEL 3)
-#define BTS_4 (BT_SEL 4)
-#define BTS_5 (BT_SEL 5)
-#define BTC   (BT_CLR)
+#define BTS1 BT_SEL 1
+#define BTS2 BT_SEL 2
+#define BTS3 BT_SEL 3
+#define BTS4 BT_SEL 4
+#define BTS5 BT_SEL 5
+#define BTC  BT_CLR
 
 &lt {
   quick-tap-ms = <125>;
