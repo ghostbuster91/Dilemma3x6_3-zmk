@@ -8,7 +8,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define BASE 0
 #define NAV 1
 #define SYM 2
 #define NUM 3
@@ -18,6 +17,13 @@
 #define STAB (LS(TAB))
 #define CTAB (LC(TAB))
 #define CSTAB (LC(LS(TAB)))
+
+#define BTS1 BT_SEL 1
+#define BTS2 BT_SEL 2
+#define BTS3 BT_SEL 3
+#define BTS4 BT_SEL 4
+#define BTS5 BT_SEL 5
+#define BTC  BT_CLR
 
 &lt {
   quick-tap-ms = <125>;
@@ -132,7 +138,7 @@
       bindings = <
       &bootloader &none    &none      &none        &none        &none                     &none      &kp F7      &kp F8      &kp F9     &kp F12    &bootloader
       &sys_reset &kp LGUI  &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &none      &kp F4      &kp F5      &kp F6     &kp F11    &sys_reset
-      &none     &none      &none      &none        &none        &none                     &none      &kp F1      &kp F2      &kp F3     &kp F10    &none 
+      &bt BTC   &bt BTS1   &bt BTS2   &bt BTS3     &bt BTS4     &bt BTS5                  &none      &kp F1      &kp F2      &kp F3     &kp F10    &none 
                                       &trans       &trans       &trans                    &trans     &trans      &trans
       >;
     };
@@ -141,7 +147,7 @@
       bindings = <
       &none     &kp LC(N1) &kp LC(N2) &kp LC(N3)   &kp LC(N4)   &kp LC(N5)                &kp LC(N6) &kp LC(N7)  &kp LC(N8)  &kp LC(N9) &kp LC(N0) &none
       &none     &kp LA(N1) &kp LA(N2) &kp LA(N3)   &kp LA(N4)   &kp LA(N5)                &kp LA(N6) &kp LA(N7)  &kp LA(N8)  &kp LA(N9) &kp LA(N0) &none
-      &none     &none      &none      &none        &none        &none                     &none      &none       &none       &none      &none      &none 
+      &bt BTC   &bt BTS1   &bt BTS2   &bt BTS3     &bt BTS4     &bt BTS5                  &bt BTS1   &bt BTS2    &bt BTS3    &bt BTS4   &bt BTS5   &bt BTC 
                                       &trans       &trans       &trans                    &trans     &trans      &trans
       >;
     };
