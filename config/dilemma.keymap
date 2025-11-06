@@ -42,7 +42,7 @@
 
   conditional_layers {
       compatible = "zmk,conditional-layers";
-      tri_layer {
+      tri_layer_extend {
           if-layers = <1 2>;
           then-layer = <5>;
       };
@@ -58,19 +58,6 @@
   };
 
   behaviors {
-        swap: swapper {
-            compatible = "zmk,behavior-tri-state";
-            label = "SWAPPER";
-            #binding-cells = <0>;
-            bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
-            ignored-key-positions = <24>;
-        };
-        swap2: swapper2 {
-            compatible = "zmk,behavior-tri-state";
-            label = "SWAPPER_2";
-            #binding-cells = <0>;
-            bindings = <&kt LALT>, <&kp GRAVE>, <&kt LALT>;
-        };
         lh: left_hand_positional_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "LEFT_POSITIONAL_HOLD_TAP";
@@ -109,8 +96,8 @@
 
     nav_layer {
       bindings = <
-      &swap2    &trans     &trans     &trans       &trans       &trans                    &trans     &trans      &kp HOME    &kp END    &trans     &none
-      &swap     &sk LGUI   &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT  &trans     &kp F11
+      &none    &trans     &trans     &trans       &trans       &trans                    &trans     &trans      &kp HOME    &kp END    &trans     &none
+      &none     &sk LGUI   &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT  &trans     &kp F11
       &kp STAB  &kp LC(Z)  &kp LC(X)  &kp LC(C)    &kp LC(V)    &kp PSCRN                 &trans     &trans      &trans      &trans     &trans     &none 
                                       &trans       &trans       &trans                    &trans     &trans      &trans  
       >;
@@ -118,7 +105,7 @@
 
    symbols_layer {
       bindings = <
-      &none     &kp APOS   &kp LT     &kp GT       &kp DQT      &kp GRAVE                 &kp AMPS   &kp UNDER   &kp LBKT    &kp RBKT   &kp PRCNT  &none
+      &none     &kp APOS   &kp LT     &kp GT       &kp DQT      &kp GRAVE                 &kp AMPS   &kp UNDER   &kp LBKT    &kp RBKT   &kp PRCNT  &bt BTC
       &kp TAB   &kp EXCL   &kp MINUS  &kp PLUS     &kp EQUAL    &kp HASH                  &kp PIPE   &kp COLON   &kp LPAR    &kp RPAR   &kp SEMI   &kp DQT
       &kp STAB  &kp CARET  &kp FSLH   &kp STAR     &kp BSLH     &kp AT                    &kp TILDE  &kp DLLR    &kp LBRC    &kp RBRC   &kp QMARK  &none
                                       &trans       &trans       &trans                    &trans     &trans      &trans
