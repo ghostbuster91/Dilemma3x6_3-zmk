@@ -15,6 +15,7 @@
 #define FN 4
 #define TMUX 5
 #define SYSTEM 6
+#define ALTAB 7
 
 #define STAB (LS(TAB))
 #define CTAB (LC(TAB))
@@ -49,6 +50,39 @@
 
   // Macros configuration, specifically character sequences.
   macros {
+    // macro to activate layer ALTAB, then release alt and move to layer COLEMAK on key release
+    nav_altab: nav_altab_layer_tap {
+        label = "nav_altab_layer_tap";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        wait-ms = <0>;
+        tap-ms = <0>;
+        bindings
+            = <&macro_press &to NAV>
+            , <&macro_pause_for_release>
+            , <&macro_release &kp LALT>
+            , <&macro_tap &to COLEMAK>;
+    };
+    altab: alt_tab_enter {
+        label = "alt_tab_enter";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        wait-ms = <10>;
+        tap-ms = <20>;
+        bindings =
+            <&macro_press &kp LALT>,
+            <&macro_tap &kp TAB &to ALTAB>;
+    };
+    altab_x: alt_tab_leave {
+        label = "alt_tab_leave";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        wait-ms = <10>;
+        tap-ms = <20>;
+        bindings =
+            <&macro_release &kp LCTRL>,
+            <&macro_tap &to COLEMAK>;
+    };
     // Cancel sticky mods.
     cancel: cancel_queued_sticky_mods {
       display-name = "Cancel sticky mods";
@@ -111,26 +145,14 @@
 //   24 25 26 27 28 29   30 31 32 33 34 35
 //            36 37 38   39 40 41
   behaviors {
-        snext: swap_next {
-            compatible = "zmk,behavior-tri-state";
-            display-name = "SWAP_NEXT";
-            #binding-cells = <0>;
-            bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
-            ignored-key-positions = <12 24>;
-        };
-        sprev: swap_prev {
-            compatible = "zmk,behavior-tri-state";
-            display-name = "SWAP_PREV";
-            #binding-cells = <0>;
-            bindings = <&kt LALT>, <&kp LS(TAB)>, <&kt LALT>;
-            ignored-key-positions = <12 24>;
-        };
-        gnext: grave_next {
-            compatible = "zmk,behavior-tri-state";
-            display-name = "GRAVE_NEXT";
-            #binding-cells = <0>;
-            bindings = <&kt LALT>, <&kp GRAVE>, <&kt LALT>;
-            ignored-key-positions = <0>;
+        // use below with a dummy value for first parameter: &lta 0 RET
+        nav: nav_layer_tab {
+            label = "nav_layer_tap";
+            compatible = "zmk,behavior-hold-tap";
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            #binding-cells = <2>;
+            bindings = <&nav_altab>, <&kp>;
         };
         lh: left_hand_positional_hold_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -165,16 +187,16 @@
       &none     &kp Q      &kp W      &kp F        &kp P        &kp B                     &kp J      &kp L       &kp U       &kp Y      &kp SEMI   &none
       &kp ESC   &lh LGUI A &lh LALT R &lh LSHFT S  &lh LCTRL T  &lh RALT G                &rh RALT M &rh RCTRL N &rh RSHFT E &rh LALT I &rh RGUI O &kp APOS
       &none     &kp Z      &kp X      &kp C        &kp D        &kp V                     &kp K      &kp H       &kp COMMA   &kp DOT    &kp FSLH   &none
-                                      &lt NUM TAB  &lt NAV BSPC &lt FN DEL                &kp ENTER  &lt SYM SPACE &kp LC(B)
+                                      &lt NUM TAB  &nav 0 BSPC  &lt FN DEL                &kp ENTER  &lt SYM SPACE &kp LC(B)
       >;
     };
 
     nav_layer {
       display-name = "Nav";
       bindings = <
-      &gnext   &trans     &trans     &trans       &trans       &trans                    &trans     &trans      &kp HOME    &kp END    &trans     &none
-      &snext   &sk LGUI   &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT  &trans     &kp F11
-      &sprev   &kp LC(Z)  &kp LC(X)  &kp LC(C)    &kp LC(V)    &kp PSCRN                 &trans     &larrow     &rarrow     &frarrow   &trans     &none 
+      &none    &trans     &trans     &trans       &trans       &trans                    &trans     &trans      &kp HOME    &kp END    &trans     &none
+      &altab   &sk LGUI   &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT  &trans     &kp F11
+      &none    &kp LC(Z)  &kp LC(X)  &kp LC(C)    &kp LC(V)    &kp PSCRN                 &trans     &larrow     &rarrow     &frarrow   &trans     &none 
                                      &trans       &trans       &trans                    &trans     &trans      &trans  
       >;
     };
@@ -222,10 +244,20 @@
     system {
       display-name = "System";
       bindings = <
-      &none        &none        &none        &sys_reset    &bootloader   &bt BT_CLR                &bt BT_CLR   &bootloader  &sys_reset   &none        &none        &none
-      &tog SYSTEM  &bt BT_SEL 3 &bt BT_SEL 2 &bt BT_SEL 1  &bt BT_SEL 0  &none                     &none        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &tog SYSTEM
-      &none        &none        &none        &bt BT_PRV    &bt BT_NXT    &none                     &none        &bt BT_NXT   &bt BT_PRV   &none        &none        &none
-                                             &trans        &trans        &trans                    &trans       &trans       &trans
+      &none        &none        &none        &sys_reset   &bootloader   &bt BT_CLR                &bt BT_CLR   &bootloader  &sys_reset   &none        &none        &none
+      &tog SYSTEM  &bt BT_SEL 3 &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0  &none                     &none        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &tog SYSTEM
+      &none        &none        &none        &bt BT_PRV   &bt BT_NXT    &none                     &none        &bt BT_NXT   &bt BT_PRV   &none        &none        &none
+                                             &trans       &trans        &trans                    &trans       &trans       &trans
+      >;
+    };
+
+    alt_tab {
+      display-name = "Alt-tab";
+      bindings = <
+      &altab_x     &altab_x     &altab_x     &altab_x     &altab_x     &altab_x                   &altab_x     &altab_x     &altab_x     &altab_x     &altab_x     &altab_x
+      &kp TAB      &altab_x     &altab_x     &altab_x     &altab_x     &altab_x                   &altab_x     &altab_x     &altab_x     &altab_x     &altab_x     &altab_x
+      &kp STAB     &altab_x     &altab_x     &altab_x     &altab_x     &altab_x                   &altab_x     &altab_x     &altab_x     &altab_x     &altab_x     &altab_x
+                                             &trans       &trans       &trans                     &trans       &trans       &trans
       >;
     };
   };
