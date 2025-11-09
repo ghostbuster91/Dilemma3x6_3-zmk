@@ -118,13 +118,6 @@
             bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
             ignored-key-positions = <12 24>;
         };
-        sprev: swap_prev {
-            compatible = "zmk,behavior-tri-state";
-            display-name = "SWAP_PREV";
-            #binding-cells = <0>;
-            bindings = <&kt LALT>, <&kp LS(TAB)>, <&kt LALT>;
-            ignored-key-positions = <12 24>;
-        };
         gnext: grave_next {
             compatible = "zmk,behavior-tri-state";
             display-name = "GRAVE_NEXT";
@@ -174,7 +167,7 @@
       bindings = <
       &gnext   &trans     &trans     &trans       &trans       &trans                    &trans     &trans      &kp HOME    &kp END    &trans     &none
       &snext   &sk LGUI   &sk LALT   &sk LSHFT    &sk LCTRL    &sk RALT                  &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT  &trans     &kp F11
-      &sprev   &kp LC(Z)  &kp LC(X)  &kp LC(C)    &kp LC(V)    &kp PSCRN                 &trans     &larrow     &rarrow     &frarrow   &trans     &none 
+      &kp STAB &kp LC(Z)  &kp LC(X)  &kp LC(C)    &kp LC(V)    &kp PSCRN                 &trans     &larrow     &rarrow     &frarrow   &trans     &none 
                                      &trans       &trans       &trans                    &trans     &trans      &trans  
       >;
     };
