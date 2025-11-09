@@ -4,10 +4,11 @@
 .west/
 modules/
 firmware/
-zephyr/
+/zephyr/
 zmk/
 # Ignore keymap-drawer output for now
 draw/skeletyl.svg
 draw/skeletyl.yaml
 draw/base.svg
 draw/base.yaml
+/nice-view-gem

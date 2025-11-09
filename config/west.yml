@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/urob
     - name: nickconway
       url-base: https://github.com/nickconway
+    - name: ghostbuster91 #new entry
+      url-base: https://github.com/ghostbuster91 #new entry
 
   projects:
     - name: zmk-auto-layer
@@ -24,6 +26,10 @@ manifest:
       remote: nickconway
       revision: smart-interrupt
       import: app/west.yml
+
+    - name: nice-view-gem #new entry
+      remote: ghostbuster91 #new entry
+      revision: main #new entry
 
   self:
     path: config
